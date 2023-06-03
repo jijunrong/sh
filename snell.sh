@@ -33,6 +33,9 @@ wget --no-check-certificate -O snell.zip https://dl.nssurge.com/snell/snell-serv
 #解压下载文件。
 unzip -o snell.zip
 
+#删除snell压缩包。
+rm -rf /root/snell.zip
+
 #赋予程序执行权限。
 chmod +x snell-server
 
