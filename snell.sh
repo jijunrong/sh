@@ -1,9 +1,10 @@
-#!/usr/bin/env bash
+#!/bin/bash
 PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
 export PATH
 CONF="/etc/snell/snell-server.conf"
 SYSTEMD="/etc/systemd/system/snell.service"
 
+#判定系统，并下载必要的插件！
 if cat /etc/*-release | grep -q -E -i "debian|ubuntu|armbian|deepin|mint"; then 	# install dependencies
 	apt-get install wget unzip dpkg -y
 elif cat /etc/*-release | grep -q -E -i "centos|red hat|redhat"; then
@@ -14,7 +15,7 @@ elif cat /etc/*-release | grep -q -E -i "fedora"; then
 	dnf install wget unzip dpkg -y
 fi
 
-
+#判定amd/aarch64，把获取的变量值带入到下载链接！
 ARCHITECTURE=`uname -m`
 if [ ${ARCHITECTURE} = "x86_64" ]
 then
@@ -25,19 +26,19 @@ fi
 
 
 cd ~/
-
+#下载链接
+#把获取的变量值带入链接下载，并重命名下载文件名字。
 wget --no-check-certificate -O snell.zip https://dl.nssurge.com/snell/snell-server-v4.0.1-linux-$ARCHITECTURE.zip
 
+#解压下载文件。
 unzip -o snell.zip
 
+#赋予程序执行权限。
 chmod +x snell-server
 
-
-unzip -o snell.zip
-
-chmod +x snell-server
-
+#移动程序到/usr/local/bin/文件夹下。
 mv snell-server /usr/local/bin/
+
  if [ -f ${CONF} ]; then
    echo "找到配置文件..."
    else
@@ -77,5 +78,5 @@ mv snell-server /usr/local/bin/
  fi
 
 
-
-echo "$(curl -s ipinfo.io/city) = snell, $(curl -s ipinfo.io/ip), $(cat /etc/snell/snell-server.conf | grep -i listen | cut --delimiter=':' -f2),psk=$(grep 'psk' /etc/snell/snell-server.conf | cut -d= -f2 | tr -d ' '), version=4, tfo=true"
+#生成snell节点内容。
+echo "$(uname -n) = snell, $(curl -s ipinfo.io/ip), $(cat /etc/snell/snell-server.conf | grep -i listen | cut --delimiter=':' -f2),psk=$(grep 'psk' /etc/snell/snell-server.conf | cut -d= -f2 | tr -d ' '), version=4, tfo=true"
