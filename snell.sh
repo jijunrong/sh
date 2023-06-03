@@ -3,6 +3,7 @@ PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
 export PATH
 CONF="/etc/snell/snell-server.conf"
 SYSTEMD="/etc/systemd/system/snell.service"
+ARCH=$(uname -m)
 
 #判定系统，并下载必要的插件！
 if cat /etc/*-release | grep -q -E -i "debian|ubuntu|armbian|deepin|mint"; then 	# install dependencies
@@ -15,26 +16,26 @@ elif cat /etc/*-release | grep -q -E -i "fedora"; then
 	dnf install wget unzip dpkg -y
 fi
 
-#判定amd/aarch64，把获取的变量值带入到下载链接！
-ARCHITECTURE=`uname -m`
-if [ ${ARCHITECTURE} = "x86_64" ]
-then
-	ARCHITECTURE="amd64"
-else
-	ARCHITECTURE="aarch64"
-fi
+case $ARCH in
+    aarch64 | armv8)
+     match="linux-aarch64"
+     ;;
+    armv7 | armv6l)
+     match="linux-armv7l"
+     ;;
+     *) #x86_64
+      match="linux-amd64"
+     ;;
+esac
 
 
 cd ~/
 #下载链接
 #把获取的变量值带入链接下载，并重命名下载文件名字。
-wget --no-check-certificate -O snell.zip https://dl.nssurge.com/snell/snell-server-v4.0.1-linux-$ARCHITECTURE.zip
+wget --no-check-certificate -O snell.zip https://dl.nssurge.com/snell/snell-server-v4.0.1-$match.zip
 
 #解压下载文件。
 unzip -o snell.zip
-
-#删除snell压缩包。
-rm -rf /root/snell.zip
 
 #赋予程序执行权限。
 chmod +x snell-server
