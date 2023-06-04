@@ -249,25 +249,13 @@ function start_menu(){
     green " 16. 恢复语言默认环境"
     green " 17. 更改主机名称" 
     green " 18. SWAP一键安装/卸载脚本"
-    green " 19. F2B一键安装脚本"
+
     yellow " --------------------------------------------------"
-    green " 21. Superbench 综合测试"
-    green " 22. MT.SH 流媒体解锁测试"
-    green " 23. Lemonbench 综合测试"
-    green " 24. UNIXbench 综合测试"
-    green " 25. 三网Speedtest测速"
-    green " 26. Memorytest 内存压力测试"
-    green " 27. Route-trace 路由追踪测试"
-    green " 28. YABS LINUX综合测试"
-    green " 29. Disk Test 硬盘&系统综合测试"
-    green " 210.TubeCheck Google/Youtube CDN分配节点测试"
-    green " 211.RegionRestrictionCheck 流媒体解锁测试"
+
     yellow " --------------------------------------------------"
-    green " 31. MTP&TLS 一键脚本"
+
     green " 32. Rclone官方一键安装脚本"
-    green " 33. Aria2 最强安装与管理脚本"
-    yellow " --------------------------------------------------"
-    green " 00. 宝塔面板综合安装脚本"
+
     green " =================================================="
     green " 0. 退出脚本"
     echo
