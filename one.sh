@@ -231,7 +231,7 @@ function start_menu(){
     red " ONE 集合" 
     green " 来自: https://blog.jijunrong.com/ "
     green " 帮助: https://blog.jijunrong.com/ "
-    green " 食用方法:  wget -O one.sh https://raw.githubusercontent.com/jijunrong/sh/main/main/one.sh && chmod +x one.sh && clear && ./one.sh "
+    green " 食用方法:  wget -O one.sh https://raw.githubusercontent.com/jijunrong/sh/main/one.sh && chmod +x one.sh && clear && ./one.sh "
     yellow " =================================================="
     green " 1. PLEX一键脚本" 
     green " 2. 一键DD脚本"
