@@ -112,7 +112,6 @@ blue "xray卸载完成"
 
 #启动BBR FQ算法
 function bbrfq(){
-remove_bbr_lotserver
 	echo "net.core.default_qdisc=fq" >> /etc/sysctl.d/99-sysctl.conf
 	echo "net.ipv4.tcp_congestion_control=bbr" >> /etc/sysctl.d/99-sysctl.conf
 	sysctl --system
