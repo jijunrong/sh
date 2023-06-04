@@ -190,30 +190,18 @@ blue "输入 bash /root/ip.sh 来运行"
 
 #更改语言环境中文
 function zh_CN(){
-sudo sed -i '/'en_US.UTF-8' / s/^\(.*\)$/# \1/g' /etc/locale.gen;
-sudo sed -i -e 's/^#\? zh_CN.UTF-8 UTF-8/zh_CN.UTF-8 UTF-8/g' /etc/locale.gen;
-sudo sed -i -e 's/LANG.*/LANG="zh_CN.UTF-8"/g' /etc/default/locale;
-echo $LANG
-	read -p "需要重启VPS后，才能生效语言环境配置，是否现在重启 ? [Y/n] :" yn
-	[ -z "${yn}" ] && yn="y"
-	if [[ $yn == [Yy] ]]; then
-		echo -e "${Info} VPS 重启中..."
-		reboot
-	fi
+sudo EDITOR='sed -Ei "
+    s|locales/locales_to_be_generated=.+|locales/locales_to_be_generated=\"zh_CN.UTF-8 UTF-8\"|; 
+    s|locales/default_environment_locale=.+|locales/default_environment_locale=\"zh_CN.UTF-8\"|
+    "' dpkg-reconfigure -f editor locales
 }
 
 #恢复语言默认环境
 function en_US(){
-sudo sed -i '/'zh_CN.UTF-8' / s/^\(.*\)$/# \1/g' /etc/locale.gen;
-sudo sed -i -e 's/^#\? en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/g' /etc/locale.gen;
-sudo sed -i -e 's/LANG.*/LANG="en_US.UTF-8"/g' /etc/default/locale;
-echo $LANG
-	read -p "需要重启VPS后，才能生效语言环境配置，是否现在重启 ? [Y/n] :" yn
-	[ -z "${yn}" ] && yn="y"
-	if [[ $yn == [Yy] ]]; then
-		echo -e "${Info} VPS 重启中..."
-		reboot
-	fi
+sudo EDITOR='sed -Ei "
+    s|locales/locales_to_be_generated=.+|locales/locales_to_be_generated=\"en_US.UTF-8 UTF-8\"|; 
+    s|locales/default_environment_locale=.+|locales/default_environment_locale=\"en_US.UTF-8\"|
+    "' dpkg-reconfigure -f editor locales
 }
 
 #更改主机名称
