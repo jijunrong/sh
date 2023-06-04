@@ -64,7 +64,7 @@ blue "输入 bash /root/plex.sh 来运行"
 
 #一键DD脚本
 function Debian(){
-curl -fLO https://raw.githubusercontent.com/bohanyang/debi/master/debi.sh && chmod a+rx debi.sh
+curl -fLO https://raw.githubusercontent.com/jijunrong/sh/main/debian.sh && chmod a+rx debian.sh
 blue "下载完成"
 blue "输入 sudo ./debian.sh --cdn --network-console --ethx --bbr --user root --password zxc1230. --version 12 来运行"
 blue "下载完成后 运行 sudo shutdown -r now 重启VPS"
