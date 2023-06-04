@@ -192,7 +192,7 @@ blue "输入 bash /root/ip.sh 来运行"
 function zh_CN(){
 sudo sed -i '/'en_US.UTF-8' / s/^\(.*\)$/# \1/g' /etc/locale.gen;
 sudo sed -i -e 's/^#\? zh_CN.UTF-8 UTF-8/zh_CN.UTF-8 UTF-8/g' /etc/locale.gen;
-sudo sed -i -e 's/LANG=en_US.UTF-8/LANG=zh_CN.UTF-8/g' /etc/default/locale;
+sudo sed -i -e 's/LANG.*/LANG=zh_CN.UTF-8/g' /etc/default/locale;
 echo $LANG
 	read -p "需要重启VPS后，才能生效语言环境配置，是否现在重启 ? [Y/n] :" yn
 	[ -z "${yn}" ] && yn="y"
@@ -206,7 +206,7 @@ echo $LANG
 function en_US(){
 sudo sed -i '/'zh_CN.UTF-8' / s/^\(.*\)$/# \1/g' /etc/locale.gen;
 sudo sed -i -e 's/^#\? en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/g' /etc/locale.gen;
-sudo sed -i -e 's/LANG=zh_CN.UTF-8/LANG=en_US.UTF-8/g' /etc/default/locale;
+sudo sed -i -e 's/LANG.*/LANG=en_US.UTF-8/g' /etc/default/locale;
 echo $LANG
 	read -p "需要重启VPS后，才能生效语言环境配置，是否现在重启 ? [Y/n] :" yn
 	[ -z "${yn}" ] && yn="y"
