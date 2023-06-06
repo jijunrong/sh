@@ -170,7 +170,7 @@ sysctl -p
 	echo "*               soft    nofile           1000000
 *               hard    nofile          1000000">/etc/security/limits.conf
 	echo "ulimit -SHn 1000000">>/etc/profile
-	read -p "需要重启VPS后，才能生效系统优化配置，是否现在重启 ? [Y/n] :" yn
+	read -p "需要重启VPS后，系统优化配置才能生效，是否现在重启 ? [Y/n] :" yn
 	[ -z "${yn}" ] && yn="y"
 	if [[ $yn == [Yy] ]]; then
 		echo -e "${Info} VPS 重启中..."
@@ -193,6 +193,12 @@ sudo EDITOR='sed -Ei "
     s|locales/locales_to_be_generated=.+|locales/locales_to_be_generated=\"zh_CN.UTF-8 UTF-8\"|; 
     s|locales/default_environment_locale=.+|locales/default_environment_locale=\"zh_CN.UTF-8\"|
     "' dpkg-reconfigure -f editor locales
+	read -p "需要重启VPS后，更改语言环境中文才能生效，是否现在重启 ? [Y/n] :" yn
+	[ -z "${yn}" ] && yn="y"
+	if [[ $yn == [Yy] ]]; then
+		echo -e "${Info} VPS 重启中..."
+		reboot
+	fi
 }
 
 #恢复语言默认环境
@@ -201,6 +207,12 @@ sudo EDITOR='sed -Ei "
     s|locales/locales_to_be_generated=.+|locales/locales_to_be_generated=\"en_US.UTF-8 UTF-8\"|; 
     s|locales/default_environment_locale=.+|locales/default_environment_locale=\"en_US.UTF-8\"|
     "' dpkg-reconfigure -f editor locales
+	read -p "需要重启VPS后，恢复语言默认环境才能生效，是否现在重启 ? [Y/n] :" yn
+	[ -z "${yn}" ] && yn="y"
+	if [[ $yn == [Yy] ]]; then
+		echo -e "${Info} VPS 重启中..."
+		reboot
+	fi
 }
 
 #更改主机名称
