@@ -35,7 +35,7 @@ curl -fLO https://raw.githubusercontent.com/jijunrong/sh/main/debian.sh && chmod
 
 ### 运行脚本。
 ```bash
-sudo ./debi.sh --cdn --network-console --ethx --bbr --user root --password zxc1230. --version 12
+sudo ./debian.sh --cdn --network-console --ethx --bbr --user root --password zxc1230. --version 12
 ```
 <br />
 
